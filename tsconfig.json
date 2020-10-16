@@ -16,8 +16,9 @@
 		"noImplicitAny": false,
 		"noImplicitThis": false,
 		"strictNullChecks": false,
+		"declaration": true,
 		"rootDir": "src",
-		"outDir": "build",
+		"outDir": "dist",
 		"removeComments": true
 	},
 	"include": [

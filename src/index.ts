@@ -1,5 +1,8 @@
 import { DynamoDB } from "aws-sdk";
-import { DynamoSettings } from "./interfaces";
+
+export interface DynamoSettings{
+	tableName: string
+}
 
 export const dynamo = (settings: DynamoSettings) => {
 	const ddb = new DynamoDB({ apiVersion: "2012-08-10" });

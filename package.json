@@ -2,7 +2,6 @@
 	"name": "@ruivalim/lambda-helper",
 	"version": "0.0.2",
 	"description": "Simple typescript project boilerplate",
-	"main": "src/index.ts",
 	"repository": {
 		"url": "https://github.com/Ruivalim/lambda-helper",
 		"type": "git"
@@ -27,5 +26,8 @@
 		"aws-sdk": "^2.772.0",
 		"tslib": "^2.0.3"
 	},
-	"private": false
+	"private": false,
+	"types": "index.d.ts",
+	"main": "dist/index.js",
+	"prepublish": "tsc"
 }
