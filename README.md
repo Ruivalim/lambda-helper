@@ -4,13 +4,13 @@ It's a small library to help build lambda functions on AWS
 
 ## Installation
 ```bash
-yarn add ruivalim/lambda-helper
+yarn add @ruivalim/lambda-helper
 ```
 
 ## Usage
 
 ```javascript
-import {dynamo} from "ruivalim/lambda-helper"
+import {dynamo} from "@ruivalim/lambda-helper"
 
 const ddb = dynamo({tableName: "My-table"});
 
