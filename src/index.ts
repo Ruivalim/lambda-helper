@@ -14,8 +14,36 @@ export const dynamo = (settings: DynamoSettings) => {
 		object: "M"
 	}
 
+	const notObjectToDynamoObj = (value: any) => {
+		if( typeof value == "number" ){
+			return value.toString();
+		}else{
+			return value;
+		}
+	}
+
+	const arrayToDynamoObj = (arr: any) => {
+		const Item = [];
+
+		arr.map((item, index)=> {
+			Item[index] = {};
+			if( typeof item == "object" ){
+				if( item instanceof Array ){
+					Item[index][DynamoDBTypes['array']] = arrayToDynamoObj(item);
+				}else{
+					Item[index][DynamoDBTypes['object']] = objectToDynamoObj(item);
+				}
+			}else{
+				Item[index][DynamoDBTypes[typeof item]] = notObjectToDynamoObj(item);
+			}
+		});
+
+		return Item;
+	}
+
 	const objectToDynamoObj = (obj: object, keyIsAttributeValue: boolean = false) => {
 		const Item = {};
+
 
 		Object.keys(obj).map((key) => {
 			const value = obj[key];
@@ -23,12 +51,12 @@ export const dynamo = (settings: DynamoSettings) => {
 
 			if( typeof value == "object" ){
 				if( value instanceof Array ){
-					ObjValue[DynamoDBTypes['array']] = value;
+					ObjValue[DynamoDBTypes['array']] = arrayToDynamoObj(value);
 				}else{
 					ObjValue[DynamoDBTypes['object']] = objectToDynamoObj(value);
 				}
 			}else{
-				ObjValue[DynamoDBTypes[typeof value]] = value;
+				ObjValue[DynamoDBTypes[typeof value]] = notObjectToDynamoObj(value);
 			}
 
 			if( keyIsAttributeValue ){
@@ -128,7 +156,7 @@ export const dynamo = (settings: DynamoSettings) => {
 				UpdateExpression
 			};
 
-			console.log(DynamoUpdate);
+			return ddb.updateItem(DynamoUpdate).promise();
 		}
 	}
 };
