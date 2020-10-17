@@ -1,6 +1,6 @@
 {
 	"name": "@ruivalim/lambda-helper",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"description": "Simple typescript project boilerplate",
 	"repository": {
 		"url": "https://github.com/Ruivalim/lambda-helper",
@@ -10,7 +10,8 @@
 		"build": "tsc",
 		"build:watch": "tsc -w",
 		"watch": "ts-node-dev --respawn --transpile-only src/index.ts",
-		"pub": "yarn run build && yarn version --patch && yarn publish"
+		"pub": "yarn run build && yarn version --patch && yarn publish",
+		"teste": "yarn version --patch && echo $npm_package_version"
 	},
 	"author": {
 		"name": "Rui Valim Jr",
