@@ -10,7 +10,7 @@
 		"build": "tsc",
 		"build:watch": "tsc -w",
 		"watch": "ts-node-dev --respawn --transpile-only src/index.ts",
-		"pub": "yarn run build && npm version patch && npm publish"
+		"patch": "yarn run build && npm version patch"
 	},
 	"author": {
 		"name": "Rui Valim Jr",
