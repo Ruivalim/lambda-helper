@@ -11,7 +11,7 @@
 		"build:watch": "tsc -w",
 		"watch": "ts-node-dev --respawn --transpile-only src/index.ts",
 		"tests": "jest",
-		"patch": "jest && yarn run build && npm version patch"
+		"patch": "jest && yarn run build && npm version patch && npm publish"
 	},
 	"author": {
 		"name": "Rui Valim Jr",
