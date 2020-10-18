@@ -1,7 +1,8 @@
 import { dynamo } from "./dynamo";
-import { response } from "./response";
+import { response, HttpStatusCode } from "./response";
 
 export {
 	dynamo,
-	response
+	response,
+	HttpStatusCode
 }
