@@ -2,7 +2,7 @@ import { DynamoDB } from "aws-sdk";
 
 interface DynamoSettings{
 	tableName: string
-	stopOnError: boolean
+	stopOnError?: boolean
 }
 
 export const dynamo = (settings: DynamoSettings) => {
