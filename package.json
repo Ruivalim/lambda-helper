@@ -1,6 +1,6 @@
 {
 	"name": "@ruivalim/lambda-helper",
-	"version": "0.0.18",
+	"version": "0.0.19",
 	"description": "Simple typescript project boilerplate",
 	"repository": {
 		"url": "https://github.com/Ruivalim/lambda-helper",
@@ -39,5 +39,8 @@
 	"private": false,
 	"types": "dist/index.d.ts",
 	"main": "dist/index.js",
-	"prepublish": "tsc"
+	"prepublish": "tsc",
+	"files": [
+		"dist/**"
+	]
 }
