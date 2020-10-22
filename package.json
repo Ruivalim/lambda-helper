@@ -1,6 +1,6 @@
 {
 	"name": "@ruivalim/lambda-helper",
-	"version": "0.0.22",
+	"version": "0.0.23",
 	"description": "Simple typescript project boilerplate",
 	"repository": {
 		"url": "https://github.com/Ruivalim/lambda-helper",
