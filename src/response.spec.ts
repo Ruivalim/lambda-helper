@@ -8,6 +8,6 @@ test('response helper - success', () => {
 			"Access-Control-Allow-Origin": "*",
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({ message }),
+		body: JSON.stringify(message),
 	})
 });
