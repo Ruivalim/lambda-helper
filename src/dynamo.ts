@@ -2,12 +2,10 @@ import { DynamoDB } from "aws-sdk";
 
 interface DynamoSettings{
 	tableName: string
-	stopOnError?: boolean
 }
 
 export const dynamo = (settings: DynamoSettings) => {
 	const ddb = new DynamoDB({ apiVersion: "2012-08-10" });
-	const stopOnError = settings.stopOnError || false;
 	const DynamoDBTypes = {
 		number: "N",
 		string: "S",
@@ -110,14 +108,7 @@ export const dynamo = (settings: DynamoSettings) => {
 				Item
 			}
 
-			try{
-				return ddb.putItem(DynamoSave).promise();
-			}catch(error){
-				if( stopOnError ){
-					throw new Error(error);
-				}
-				return error
-			}
+			return ddb.putItem(DynamoSave).promise();
 		},
 		delete: (key: object) => {
 			const Key = objectToDynamoObj(key);
@@ -127,14 +118,7 @@ export const dynamo = (settings: DynamoSettings) => {
 				Key
 			}
 
-			try{
-				return ddb.deleteItem(DynamoDelete).promise();
-			}catch(error){
-				if( stopOnError ){
-					throw new Error(error);
-				}
-				return error
-			}
+			return ddb.deleteItem(DynamoDelete).promise();
 		},
 		scan: (searchParams: object) => {
 			const FilterExpression = makeFilterExpression(searchParams);
@@ -146,14 +130,7 @@ export const dynamo = (settings: DynamoSettings) => {
 				ExpressionAttributeValues
 			}
 
-			try{
-				return ddb.scan(DynamoScan).promise();
-			}catch(error){
-				if( stopOnError ){
-					throw new Error(error);
-				}
-				return error
-			}
+			return ddb.scan(DynamoScan).promise();
 		},
 		get: (key: object) => {
 			const Key = objectToDynamoObj(key);
@@ -163,14 +140,7 @@ export const dynamo = (settings: DynamoSettings) => {
 				Key
 			}
 
-			try{
-				return ddb.getItem(DynamoGet).promise();
-			}catch(error){
-				if( stopOnError ){
-					throw new Error(error);
-				}
-				return error
-			}
+			return ddb.getItem(DynamoGet).promise();
 		},
 		update: (key: object, data: object) => {
 			const Key = objectToDynamoObj(key);
@@ -186,14 +156,7 @@ export const dynamo = (settings: DynamoSettings) => {
 				UpdateExpression
 			};
 
-			try{
-				return ddb.updateItem(DynamoUpdate).promise();
-			}catch(error){
-				if( stopOnError ){
-					throw new Error(error);
-				}
-				return error
-			}
+			return ddb.updateItem(DynamoUpdate).promise();
 		}
 	}
 };
