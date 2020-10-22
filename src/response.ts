@@ -68,7 +68,7 @@ interface Response{
 	body: string
 }
 
-export const response = (statusCode: HttpStatusCode, message: any, payload: any, headers: any): Response => {
+export const response = (statusCode: HttpStatusCode, message?: any, payload?: any, headers?: any): Response => {
 	return {
 		statusCode: statusCode,
 		headers: headers || {
