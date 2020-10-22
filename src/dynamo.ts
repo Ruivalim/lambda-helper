@@ -108,7 +108,7 @@ export const dynamo = (settings: DynamoSettings) => {
 				Item
 			}
 
-			return ddb.putItem(DynamoSave).promise();
+			return ddb.putItem(DynamoSave);
 		},
 		delete: (key: object) => {
 			const Key = objectToDynamoObj(key);
@@ -118,7 +118,7 @@ export const dynamo = (settings: DynamoSettings) => {
 				Key
 			}
 
-			return ddb.deleteItem(DynamoDelete).promise();
+			return ddb.deleteItem(DynamoDelete);
 		},
 		scan: (searchParams: object) => {
 			const FilterExpression = makeFilterExpression(searchParams);
@@ -130,7 +130,7 @@ export const dynamo = (settings: DynamoSettings) => {
 				ExpressionAttributeValues
 			}
 
-			return ddb.scan(DynamoScan).promise();
+			return ddb.scan(DynamoScan);
 		},
 		get: (key: object) => {
 			const Key = objectToDynamoObj(key);
@@ -140,7 +140,7 @@ export const dynamo = (settings: DynamoSettings) => {
 				Key
 			}
 
-			return ddb.getItem(DynamoGet).promise();
+			return ddb.getItem(DynamoGet);
 		},
 		update: (key: object, data: object) => {
 			const Key = objectToDynamoObj(key);
@@ -156,7 +156,7 @@ export const dynamo = (settings: DynamoSettings) => {
 				UpdateExpression
 			};
 
-			return ddb.updateItem(DynamoUpdate).promise();
+			return ddb.updateItem(DynamoUpdate);
 		}
 	}
 };
