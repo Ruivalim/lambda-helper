@@ -68,13 +68,13 @@ interface Response{
 	body: string
 }
 
-export const response = (statusCode: HttpStatusCode, message?: any, payload?: any, headers?: any): Response => {
+export const response = (statusCode: HttpStatusCode, payload?: any, headers?: any): Response => {
 	return {
 		statusCode: statusCode,
 		headers: headers || {
 			"Access-Control-Allow-Origin": "*",
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({ message, payload }),
+		body: JSON.stringify(payload),
 	};
 }
