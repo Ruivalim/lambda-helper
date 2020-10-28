@@ -53,7 +53,7 @@ export const dynamo = (settings: DynamoSettings) => {
 				if( value instanceof Array ){
 					ObjValue[DynamoDBTypes['array']] = arrayToDynamoObj(value);
 				}else{
-					ObjValue[DynamoDBTypes['object']] = objectToDynamoObj(value);
+					ObjValue[DynamoDBTypes['object']] = objectToDynamoObj(value, keyIsAttributeValue);
 				}
 			}else{
 				ObjValue[DynamoDBTypes[typeof value]] = notObjectToDynamoObj(value);
@@ -73,10 +73,10 @@ export const dynamo = (settings: DynamoSettings) => {
 		let FilterExpression = "";
 
 		Object.keys(searchParams).map(key => {
-			FilterExpression += `${key} = :${key},`
+			FilterExpression += `${key} = :${key} AND `
 		});
 
-		return FilterExpression.slice(0, -1);
+		return FilterExpression.slice(0, -4);
 	}
 
 	const makeExpressionAttributeNames = (data: object) => {
@@ -120,8 +120,8 @@ export const dynamo = (settings: DynamoSettings) => {
 
 			return ddb.deleteItem(DynamoDelete);
 		},
-		scan: (searchParams: object) => {
-			const FilterExpression = makeFilterExpression(searchParams);
+		scan: (searchParams: object, filter?: string) => {
+			const FilterExpression = filter || makeFilterExpression(searchParams);
 			const ExpressionAttributeValues = objectToDynamoObj(searchParams, true);
 
 			const DynamoScan: DynamoDB.DocumentClient.ScanInput = {
@@ -129,8 +129,8 @@ export const dynamo = (settings: DynamoSettings) => {
 				FilterExpression,
 				ExpressionAttributeValues
 			}
-
-			return ddb.scan(DynamoScan);
+			return DynamoScan
+			//return ddb.scan(DynamoScan);
 		},
 		get: (key: object) => {
 			const Key = objectToDynamoObj(key);
@@ -160,3 +160,6 @@ export const dynamo = (settings: DynamoSettings) => {
 		}
 	}
 };
+
+
+console.log( dynamo({tableName: "asdas"}).scan({ slug: "asda", dns: "asdas" }))
