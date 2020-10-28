@@ -129,8 +129,8 @@ export const dynamo = (settings: DynamoSettings) => {
 				FilterExpression,
 				ExpressionAttributeValues
 			}
-			return DynamoScan
-			//return ddb.scan(DynamoScan);
+
+			return ddb.scan(DynamoScan);
 		},
 		get: (key: object) => {
 			const Key = objectToDynamoObj(key);
@@ -160,6 +160,3 @@ export const dynamo = (settings: DynamoSettings) => {
 		}
 	}
 };
-
-
-console.log( dynamo({tableName: "asdas"}).scan({ slug: "asda", dns: "asdas" }))
